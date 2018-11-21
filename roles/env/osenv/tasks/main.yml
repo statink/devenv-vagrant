@@ -1,0 +1,30 @@
+- name: Enable basic RPM repos
+  shell: yum-config-manager --enable base updates
+
+- name: Install basic RPM packages
+  yum:
+    name:
+      - '@core'
+      - '@base'
+      - epel-release
+      - scl-utils
+    state: installed
+
+- name: Update installed RPM packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: Disable SELinux (runtime)
+  shell: "setenforce 0"
+  when: ansible_selinux == True
+
+- name: Disable SELinux (config)
+  selinux:
+    state: disabled
+
+- name: Enable firewalld
+  systemd:
+    name: firewalld.service
+    enabled: yes
+    state: started

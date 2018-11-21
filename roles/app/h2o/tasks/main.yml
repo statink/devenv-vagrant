@@ -1,0 +1,17 @@
+- name: "Install H2O config"
+  copy:
+    src: h2o.conf
+    dest: /etc/h2o/h2o.conf
+
+- name: "Start H2O"
+  systemd:
+    name: h2o.service
+    enabled: yes
+    state: restarted
+
+- name: "Open a port for HTTP (80/tcp)"
+  firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled

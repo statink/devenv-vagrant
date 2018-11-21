@@ -1,0 +1,28 @@
+# psycopg2 is required by postgresql_user and postgresql_db
+- name: "Install PostgreSQL driver for Python"
+  yum:
+    name: python-psycopg2
+    state: present
+
+- name: "Create user"
+  become: yes
+  become_user: postgres
+  postgresql_user: 
+    name: "{{ db_user }}"
+    password: "{{ db_pass }}"
+    no_password_changes: no
+    role_attr_flags: NOSUPERUSER,NOCREATEROLE,NOCREATEDB,LOGIN
+    state: present
+    login_user: postgres
+
+- name: "Create database"
+  become: yes
+  become_user: postgres
+  postgresql_db:
+    name: "{{ db_database }}"
+    owner: "{{ db_user }}"
+    encoding: "UTF-8"
+    lc_collate: "en_US.UTF8"
+    lc_ctype: "en_US.UTF8"
+    state: present
+    login_user: postgres

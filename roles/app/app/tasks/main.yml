@@ -1,0 +1,52 @@
+- name: "Clone repository"
+  become: yes
+  become_user: statink
+  git:
+    repo: "{{ repository }}"
+    dest: /var/www/statink/statink
+    update: no
+
+- name: "Write DB config"
+  template:
+    src: conf-db.php
+    dest: /var/www/statink/statink/config/db.php
+    owner: statink
+    group: statink
+    mode: 0644
+
+- name: "Write debug IP config"
+  copy:
+    src: conf-debug-ips.php
+    dest: /var/www/statink/statink/config/debug-ips.php
+    owner: statink
+    group: statink
+    mode: 0644
+
+- name: "Install stat.ink app (may take a long time)"
+  become: yes
+  become_user: statink
+  shell: "scl enable php72 -- make"
+  args:
+    chdir: /var/www/statink/statink
+
+- name: "Install cron jobs"
+  copy:
+    src: cron
+    dest: /etc/cron.d/statink
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Setup supervisor"
+  copy:
+    src: supervisord-gearman.ini
+    dest: /etc/supervisord.d/gearman-statink.ini
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Reload supervisor"
+  systemd:
+    name: supervisord.service
+    enabled: yes
+    state: restarted

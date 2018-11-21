@@ -1,0 +1,20 @@
+- name: Setup JP3CKI repository
+  get_url:
+    dest: /etc/yum.repos.d/jp3cki.repo
+    url: https://rpm.fetus.jp/jp3cki.repo
+
+- name: Enable JP3CKI repository
+  shell: yum-config-manager --enable jp3cki jp3cki-h2o-mainline
+
+- name: Install packages
+  yum:
+    name:
+      - ImageMagick
+      - brotli
+      - git
+      - h2o
+      - jpegoptim
+      - pngcrush
+      - supervisor
+      - zopfli
+    state: installed

@@ -1,0 +1,23 @@
+- name: Create /var/www
+  file:
+    path: /var/www
+    state: directory
+    recurse: yes
+
+- name: Create a group
+  group:
+    name: statink
+
+- name: Create a user
+  user:
+    name: statink
+    group: statink
+    home: /var/www/statink
+    # password: statink
+    password: "$6$114oKTkC4bl8tV10$50foOpUNBMiO.gk.AKS9U3bzfpdjDoh2YFyONdMf1Wr08HnTD7vtm8IHntbeVQjuT4nt89PuiK0Yn2AdPfZma/"
+    update_password: on_create
+
+- name: Change permission of home directory
+  file:
+    path: /var/www/statink
+    mode: 0701

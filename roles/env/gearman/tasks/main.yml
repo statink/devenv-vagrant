@@ -1,0 +1,11 @@
+- name: Install Gearmand
+  yum:
+    name:
+      - gearmand
+    state: installed
+
+- name: Enable Gearmand
+  systemd:
+    name: gearmand.service
+    enabled: true
+    state: started

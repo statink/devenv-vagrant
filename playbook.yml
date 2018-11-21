@@ -1,0 +1,18 @@
+- hosts: all
+  become: true
+  vars:
+    repository: "https://github.com/fetus-hina/stat.ink.git"
+    db_user: "statink"
+    db_pass: "statink"
+    db_database: "statink"
+  roles:
+    - env/osenv
+    - env/user
+    - env/node
+    - env/pgsql
+    - env/gearman
+    - env/php
+    - env/statink
+    - app/database
+    - app/app
+    - app/h2o

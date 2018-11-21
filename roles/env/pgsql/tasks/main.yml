@@ -1,0 +1,30 @@
+- name: Install RPM repo config of PostgreSQL
+  yum:
+    name: 'https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm'
+    state: installed
+
+- name: Install PostgreSQL Client/Server
+  yum:
+    name:
+      - postgresql11
+      - postgresql11-server
+    state: installed
+
+- name: Initialize PostgreSQL data directory
+  shell: '/usr/bin/env PGSETUP_INITDB_OPTIONS="-E UTF-8 --locale=en_US.UTF8 -k" /usr/pgsql-11/bin/postgresql-11-setup initdb'
+  args:
+    creates: /var/lib/pgsql/11/data/postgresql.conf
+
+- name: Update pg_hba.conf
+  copy:
+    src: pg_hba.conf
+    dest: /var/lib/pgsql/11/data/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: 0644
+
+- name: Enable PostgreSQL Server
+  systemd:
+    name: postgresql-11.service
+    enabled: true
+    state: started
