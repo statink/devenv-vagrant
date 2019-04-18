@@ -1,7 +1,6 @@
 - name: Install RPM repo config of node.js
-  shell: "curl -sSL 'https://rpm.nodesource.com/setup_11.x | bash -'"
+  shell: "curl -fsSL 'https://rpm.nodesource.com/setup_10.x' | bash -"
   args:
-    warn: False
     creates: /etc/yum.repos.d/nodesource-el7.repo
 
 - name: Install node.js

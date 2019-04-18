@@ -6,33 +6,33 @@
 - name: Install PHP packages
   yum:
     name:
-      - php72-php-cli
-      - php72-php-fpm
-      - php72-php-gd
-      - php72-php-intl
-      - php72-php-json
-      - php72-php-mbstring
-      - php72-php-opcache
-      - php72-php-pdo
-      - php72-php-pecl-gearman
-      - php72-php-pecl-msgpack
-      - php72-php-pecl-zip
-      - php72-php-pgsql
-      - php72-php-process
-      - php72-php-xml
-      - php72-runtime
+      - php73-php-cli
+      - php73-php-fpm
+      - php73-php-gd
+      - php73-php-intl
+      - php73-php-json
+      - php73-php-mbstring
+      - php73-php-opcache
+      - php73-php-pdo
+      - php73-php-pecl-gearman
+      - php73-php-pecl-msgpack
+      - php73-php-pecl-zip
+      - php73-php-pgsql
+      - php73-php-process
+      - php73-php-xml
+      - php73-runtime
     state: installed
 
 - name: Disable default config of PHP-FPM
   replace:
-    dest: /etc/opt/remi/php72/php-fpm.d/www.conf
+    dest: /etc/opt/remi/php73/php-fpm.d/www.conf
     regexp: '^(?!;)'
     replace: ';'
 
 - name: Install config for PHP-FPM
   copy:
     src: statink.conf
-    dest: /etc/opt/remi/php72/php-fpm.d/statink.conf
+    dest: /etc/opt/remi/php73/php-fpm.d/statink.conf
 
 - name: Create directories for running PHP-FPM
   file:
@@ -41,17 +41,17 @@
     group: statink
     state: directory
   with_items:
-    - /var/www/statink/.php72-php-fpm/
-    - /var/www/statink/.php72-php-fpm/session
-    - /var/www/statink/.php72-php-fpm/wsdlcache
+    - /var/www/statink/.php73-php-fpm/
+    - /var/www/statink/.php73-php-fpm/session
+    - /var/www/statink/.php73-php-fpm/wsdlcache
 
 - name: Enable PHP-FPM
   systemd:
-    name: php72-php-fpm.service
+    name: php73-php-fpm.service
     enabled: true
     state: started
 
 - name: Add PHP7.2 setting to /etc/profile.d
   copy:
-    src: php72.sh
-    dest: /etc/profile.d/php72.sh
+    src: php73.sh
+    dest: /etc/profile.d/php73.sh
