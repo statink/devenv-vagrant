@@ -25,7 +25,7 @@
 - name: "Install stat.ink app (may take a long time)"
   become: yes
   become_user: statink
-  shell: "scl enable php72 -- make"
+  shell: "scl enable php73 -- make"
   args:
     chdir: /var/www/statink/statink
 
