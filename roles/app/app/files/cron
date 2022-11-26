@@ -3,15 +3,15 @@ PATH=/bin:/usr/bin:/usr/local/bin
 MAILTO=statink
 HOME=/var/www/statink
 
-1 3,15   * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-entire-weapons >/dev/null 2>&1
-5 3      * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-entire-user >/dev/null 2>&1
-6 3      * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-agent-user >/dev/null 2>&1
-0 3-23/4 * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-knockout >/dev/null 2>&1
-3 3-23/4 * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-k-d-win-rate >/dev/null 2>&1
-12 3-23/4 * * * statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-weapon-vs-weapon >/dev/null 2>&1
-8 3-23/4 * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-weapon-use-count >/dev/null 2>&1
-14 *     * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii stat/update-player-id-map >/dev/null 2>&1
-3 0      * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii dl-stats2/create >/dev/null 2>&1
-2 *      * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii splatoon2-ink/update >/dev/null 2>&1
-*/15 *   * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii blog-feed/crawl >/dev/null 2>&1
-* *      * * *  statink /usr/bin/scl enable php74 -- /var/www/statink/statink/yii user-json/auto-update >/dev/null 2>&1
+1 3,15   * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-entire-weapons >/dev/null 2>&1
+5 3      * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-entire-user >/dev/null 2>&1
+6 3      * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-agent-user >/dev/null 2>&1
+0 3-23/4 * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-knockout >/dev/null 2>&1
+3 3-23/4 * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-k-d-win-rate >/dev/null 2>&1
+12 3-23/4 * * * statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-weapon-vs-weapon >/dev/null 2>&1
+8 3-23/4 * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-weapon-use-count >/dev/null 2>&1
+14 *     * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii stat/update-player-id-map >/dev/null 2>&1
+3 0      * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii dl-stats2/create >/dev/null 2>&1
+2 *      * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii splatoon2-ink/update >/dev/null 2>&1
+*/15 *   * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii blog-feed/crawl >/dev/null 2>&1
+* *      * * *  statink /usr/bin/scl enable php80 -- /var/www/statink/statink/yii user-json/auto-update >/dev/null 2>&1
