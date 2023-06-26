@@ -6,25 +6,25 @@
 - name: Install PostgreSQL Client/Server
   yum:
     name:
-      - postgresql11
-      - postgresql11-server
+      - postgresql15
+      - postgresql15-server
     state: installed
 
 - name: Initialize PostgreSQL data directory
-  shell: '/usr/bin/env PGSETUP_INITDB_OPTIONS="-E UTF-8 --locale=en_US.UTF8 -k" /usr/pgsql-11/bin/postgresql-11-setup initdb'
+  shell: '/usr/bin/env PGSETUP_INITDB_OPTIONS="-E UTF-8 --locale=en_US.UTF8 -k" /usr/pgsql-15/bin/postgresql-15-setup initdb'
   args:
-    creates: /var/lib/pgsql/11/data/postgresql.conf
+    creates: /var/lib/pgsql/15/data/postgresql.conf
 
 - name: Update pg_hba.conf
   copy:
     src: pg_hba.conf
-    dest: /var/lib/pgsql/11/data/pg_hba.conf
+    dest: /var/lib/pgsql/15/data/pg_hba.conf
     owner: postgres
     group: postgres
     mode: 0644
 
 - name: Enable PostgreSQL Server
   systemd:
-    name: postgresql-11.service
+    name: postgresql-15.service
     enabled: true
     state: started
