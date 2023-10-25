@@ -4,7 +4,7 @@
     url: https://rpm.fetus.jp/jp3cki.repo
 
 - name: Enable JP3CKI repository
-  shell: yum-config-manager --enable jp3cki jp3cki-h2o-mainline
+  shell: yum-config-manager --enable jp3cki jp3cki-h2o-rolling
 
 - name: Install packages
   yum:
